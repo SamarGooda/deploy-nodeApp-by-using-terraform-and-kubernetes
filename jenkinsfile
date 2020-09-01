@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                 sh "docker build --tag=node-app ."
+            }
+        }
+    //     stage('push') {
+    //         steps {
+    //               withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'DOCKER_REGISTRY_PWD', usernameVariable: 'DOCKER_REGISTRY_USER')]) {
+    //               sh 'docker login -u=$DOCKER_REGISTRY_USER -p=$DOCKER_REGISTRY_PWD'
+    //               sh 'docker tag python_app samargooda/capston_project:first'
+    //               sh "docker push samargooda/capston_project:first"
+    //         }
+    //     }
+    // }
+}
+}
