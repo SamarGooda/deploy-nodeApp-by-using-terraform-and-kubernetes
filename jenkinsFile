@@ -4,18 +4,18 @@ pipeline {
     stages {
         stage('create_pod') {
             steps {
-                sh "../var/kubectl/kubectl create -f node-deployment.yaml --namespace ${namespace}"
+                sh "/var/kubectl/kubectl create -f node-deployment.yaml --namespace ${namespace}"
                 
             }
         }
         stage('create_nodePort_service') {
             steps {
-               sh  "../var/kubectl/kubectl create -f node-port-service.yaml --namespace ${namespace}"
+               sh  "/var/kubectl/kubectl create -f node-port-service.yaml --namespace ${namespace}"
             }
         }
        stage('create_ipCluster_service') {
             steps {
-               sh  "../var/kubectl/kubectl create -f Ipcluster-service.yaml --namespace ${namespace}"
+               sh  "/var/kubectl/kubectl create -f Ipcluster-service.yaml --namespace ${namespace}"
         }
     }
   }
