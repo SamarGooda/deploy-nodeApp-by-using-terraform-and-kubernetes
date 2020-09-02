@@ -7,10 +7,14 @@ pipeline {
                  sh "docker build --tag=node-app ."
             }
         }
-    //     stage('push') {
-    //         steps {
-    //              
-    //     }
-    // }
-}
+        stage('push') {
+            steps {
+                 withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'DOCKER_REGISTRY_PWD', usernameVariable: 'DOCKER_REGISTRY_USER')]) {
+                  sh 'docker login -u=$DOCKER_REGISTRY_USER -p=$DOCKER_REGISTRY_PWD'
+                  sh 'docker tag node-app samargooda/node_project:latest'
+                  sh "docker push samargooda/node_project:latest"
+        }
+    }
+  }
+ }
 }
