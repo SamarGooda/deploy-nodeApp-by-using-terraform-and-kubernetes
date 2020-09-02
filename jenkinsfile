@@ -6,7 +6,7 @@ pipeline {
             steps {
                  sh " git checkout ${version}"
                  sh "docker build --tag=node-app  ."
-                 sh "echo 'samarrrrrrrrrrrrr'"
+                 echo "samarrrrrrrrrrrrr"
             }
         }
         stage('push') {
