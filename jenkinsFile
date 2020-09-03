@@ -30,6 +30,7 @@ pipeline {
             steps {
             //    sh  "/var/kubectl/kubectl apply -f Ipcluster-service.yaml --namespace ${namespace}"
             sh  "sed 's/NAMESPACE/${namespace}/g' playbook.yaml"
+            sh  "cat playbook.yaml"
             sh "ansible-playbook -i inventory playbook.yaml"
         }
     }
