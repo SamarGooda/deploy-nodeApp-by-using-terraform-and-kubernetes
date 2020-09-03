@@ -1,7 +1,6 @@
 ---
 - hosts: localhost
   tasks:
-  - name: create commands
-    # become: yes
-    command: /var/kubectl/kubectl apply -f Ipcluster-service.yaml --namespace dev
+  - name: create Ipservice for node pode
+    shell: /var/kubectl/kubectl apply -f Ipcluster-service.yaml --namespace dev
   
