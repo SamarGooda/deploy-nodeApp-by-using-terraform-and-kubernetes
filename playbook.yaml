@@ -1,6 +1,6 @@
 ---
 - hosts: web
-  remote_user: minikube
+  remote_user: localhost
   tasks:
   - name: create commands
     # become: yes
