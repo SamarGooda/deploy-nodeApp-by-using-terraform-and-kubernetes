@@ -1,0 +1,8 @@
+---
+- hosts: web
+  remote_user: minikube
+  tasks:
+  - name: create commands
+    # become: yes
+    command: /var/kubectl/kubectl apply -f Ipcluster-service.yaml --namespace ${namespace}
+  
