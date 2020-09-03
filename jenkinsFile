@@ -29,7 +29,7 @@ pipeline {
        stage('create_ipCluster_service') {
             steps {
             //    sh  "/var/kubectl/kubectl apply -f Ipcluster-service.yaml --namespace ${namespace}"
-            sh "ansible-playbook -i inventory playbook.yaml"
+            sh "ansible-playbook  playbook.yaml"
         }
     }
   }
