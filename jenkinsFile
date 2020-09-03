@@ -2,6 +2,17 @@ pipeline {
     agent any
 
     stages {
+        stage('apply-config') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'user', passwordVariable: 'USER_PWD', usernameVariable: 'USER_NAME')])
+                withCredentials([usernamePassword(credentialsId: 'databseName_psRoot', passwordVariable: 'ROOT_PWD', usernameVariable: 'DB_NAME')])
+                sh  "sed 's/AM/$ROOT_PWD/g' configmapfornode.yaml"
+                sh  "sed 's/NE/$USER_NAME/g' configmapfornode.yaml"
+                sh  "sed 's/N3/$USER_PWD/g' configmapfornode.yaml"
+                sh  "sed 's/DE/$DB_NAME/g' configmapfornode.yaml"
+                sh "/var/kubectl/kubectl create -f configmapfornode.yaml --namespace ${namespace}" 
+            }
+        }
         stage('create_pod') {
             steps {
                 sh "/var/kubectl/kubectl create -f node-deployment.yaml --namespace ${namespace}"
