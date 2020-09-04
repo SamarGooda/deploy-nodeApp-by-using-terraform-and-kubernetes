@@ -2,5 +2,12 @@
 - hosts: localhost
   tasks:
   - name: create Ipservice for node pode
-    shell: /var/kubectl/kubectl apply -f Ipcluster-service.yaml --namespace {{namespace}}
-  
+    shell: /var/kubectl/kubectl apply -f Ipcluster-service.yaml --namespace namespace
+
+
+  # - name: create Ipservice for node pode
+  #   shell: /var/kubectl/kubectl apply -f Ipcluster-service.yaml --namespace {{namespace}}
+  # - name: create Ipservice for node pode
+  #   shell: /var/kubectl/kubectl apply -f Ipcluster-service.yaml --namespace {{namespace}}
+  # - name: create Ipservice for node pode
+  #   shell: /var/kubectl/kubectl apply -f Ipcluster-service.yaml --namespace {{namespace}}
