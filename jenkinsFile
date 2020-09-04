@@ -30,7 +30,7 @@ pipeline {
             steps {
             // sh  "/var/kubectl/kubectl apply -f Ipcluster-service.yaml --namespace ${namespace}"
             // sh  "sed 's/AM/$ROOT_PWD/g' configmapfornode.yaml"
-            sh  "sed -i 's/namespace/${namespace}/g' Ipcluster-service.yaml"
+            sh  "sed -i 's/namespace_value/${namespace}/g' Ipcluster-service.yaml"
             sh   "cat Ipcluster-service.yaml "
             sh "ansible-playbook  playbook.yaml"
         }
