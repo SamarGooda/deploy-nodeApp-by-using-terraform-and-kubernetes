@@ -12,29 +12,32 @@ pipeline {
                 sh  "sed 's/AM/$ROOT_PWD/g' configmapfornode.yaml"
                 sh  "sed 's/DE/$DB_NAME/g' configmapfornode.yaml"
                 }
-                sh "/var/kubectl/kubectl apply -f configmapfornode.yaml --namespace ${namespace}" 
+                sh  "sed -i 's/namespace_value/${namespace}/g' *.yaml"
+                sh "ansible-playbook  playbook.yaml"
+
+                // sh "/var/kubectl/kubectl apply -f configmapfornode.yaml --namespace ${namespace}" 
             }
         }
-        stage('create_pod') {
-            steps {
-                // sh "/var/kubectl/kubectl apply -f node-deployment.yaml --namespace ${namespace}"
+    //     stage('create_pod') {
+    //         steps {
+    //             // sh "/var/kubectl/kubectl apply -f node-deployment.yaml --namespace ${namespace}"
                 
-            }
-        }
-        stage('create_nodePort_service') {
-            steps {
-            //    sh  "/var/kubectl/kubectl apply -f node-port-service.yaml --namespace ${namespace}"
-            }
-        }
-       stage('create_ipCluster_service') {
-            steps {
-            // sh  "/var/kubectl/kubectl apply -f Ipcluster-service.yaml --namespace ${namespace}"
+    //         }
+    //     }
+    //     stage('create_nodePort_service') {
+    //         steps {
+    //         //    sh  "/var/kubectl/kubectl apply -f node-port-service.yaml --namespace ${namespace}"
+    //         }
+    //     }
+    //    stage('create_ipCluster_service') {
+    //         steps {
+    //         // sh  "/var/kubectl/kubectl apply -f Ipcluster-service.yaml --namespace ${namespace}"
          
-            sh  "sed -i 's/namespace_value/${namespace}/g' *.yaml"
-            sh   "cat Ipcluster-service.yaml "
-            sh "ansible-playbook  playbook.yaml"
-        }
-    }
+    //         sh  "sed -i 's/namespace_value/${namespace}/g' *.yaml"
+    //         sh   "cat Ipcluster-service.yaml "
+    //         sh "ansible-playbook  playbook.yaml"
+    //     }
+    // }
 
         
   }
