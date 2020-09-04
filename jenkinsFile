@@ -29,8 +29,8 @@ pipeline {
        stage('create_ipCluster_service') {
             steps {
             // sh  "/var/kubectl/kubectl apply -f Ipcluster-service.yaml --namespace ${namespace}"
-            sh  "sed 's/namespace/${namespace}/g' Ipcluster-service.yaml"
-            // sh  "cat playbook.yaml"
+            // sh  "sed 's/AM/$ROOT_PWD/g' configmapfornode.yaml"
+            sh  "sed 's/namespace/$namespace/g' Ipcluster-service.yaml"
             sh "ansible-playbook  playbook.yaml"
         }
     }
