@@ -34,5 +34,10 @@ pipeline {
             sh "ansible-playbook  playbook.yaml"
         }
     }
+        post{
+            always{
+                cleanWS()
+            }
+        }
   }
 }
