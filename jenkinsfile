@@ -13,10 +13,18 @@ pipeline {
                  sh "docker build --tag=node-app  ."
             }
         }
-        stage('push') {
+//       stage('push with docker') {
+//             steps {
+//                  withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'DOCKER_REGISTRY_PWD', usernameVariable: 'DOCKER_REGISTRY_USER')]) {
+//                   sh 'docker login -u=$DOCKER_REGISTRY_USER -p=$DOCKER_REGISTRY_PWD'
+//                   sh 'docker tag node-app samargooda/node_project:latest'
+//                   sh "docker push samargooda/node_project:latest"
+//         }
+//     }
+        stage('push with nexus') {
             steps {
-                 withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'DOCKER_REGISTRY_PWD', usernameVariable: 'DOCKER_REGISTRY_USER')]) {
-                  sh 'docker login -u=$DOCKER_REGISTRY_USER -p=$DOCKER_REGISTRY_PWD'
+                 withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'NEXUS_REGISTRY_PWD', usernameVariable: 'NEXUS_REGISTRY_USER')]) {
+                  sh 'docker login -u=$NEXUS_REGISTRY_USER -p=$NEXUS_REGISTRY_PWD'
                   sh 'docker tag node-app samargooda/node_project:latest'
                   sh "docker push samargooda/node_project:latest"
         }
