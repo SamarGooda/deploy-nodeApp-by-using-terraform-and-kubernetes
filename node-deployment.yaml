@@ -17,7 +17,8 @@ spec:
     spec:
       containers:
       - name: node-app
-        image: samargooda/node_project
+        # image: samargooda/node_project
+        image: 10.105.233.131:8123/node_project:latest
         ports:
         - containerPort: 3000
         env:
