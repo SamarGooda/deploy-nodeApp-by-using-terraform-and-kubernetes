@@ -17,7 +17,9 @@ spec:
     spec:
       containers:
       - name: node-app
+        # the name of image on dockerhub
         # image: samargooda/node_project
+        # the name of image on nexus with ip of cluster and the port of service
         image: 10.105.233.131:8123/node_project:latest
         ports:
         - containerPort: 3000
