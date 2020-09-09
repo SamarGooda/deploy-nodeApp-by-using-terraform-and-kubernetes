@@ -1,10 +1,15 @@
 pipeline {
     agent any
+        parameters{ 
+
+          string(name: 'version', defaultValue: '39ab771af3452b29d32afcaec02d331071b71418', description: 'commit number')
+
+        }
 
     stages {
         stage('Build') {
             steps {
-                 sh " git checkout ${version}"
+                 sh " git checkout ${params.version}"
                  sh "docker build --tag=node-app  ."
             }
         }
