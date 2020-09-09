@@ -25,7 +25,7 @@ pipeline {
             steps {
                  withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'NEXUS_REGISTRY_PWD', usernameVariable: 'NEXUS_REGISTRY_USER')]) {
                   sh 'docker login -u=$NEXUS_REGISTRY_USER -p=$NEXUS_REGISTRY_PWD 192.168.99.115:30000'
-                  sh 'docker tag node-app 192.168.99.115:30000/node_project:latest 
+                  sh 'docker tag node-app 192.168.99.115:30000/node_project:latest' 
                   sh "docker push 192.168.99.115:30000/node_project:latest"
         }
     }
