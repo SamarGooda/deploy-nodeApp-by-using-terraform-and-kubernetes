@@ -10,7 +10,7 @@ pipeline {
         stage('Build') {
             steps {
                  sh " git checkout ${params.version}"
-                 sh "docker build --tag=node-app  ."
+                 sh "docker build --tag=node-app 192.168.99.115:30000 ."
             }
         }
 //       stage('push with docker') {
@@ -24,9 +24,9 @@ pipeline {
         stage('push with nexus') {
             steps {
                  withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'NEXUS_REGISTRY_PWD', usernameVariable: 'NEXUS_REGISTRY_USER')]) {
-                  sh 'docker login -u=$NEXUS_REGISTRY_USER -p=$NEXUS_REGISTRY_PWD 192.168.99.113:30000'
-                  sh 'docker tag node-app samargooda/node_project:latest'
-                  sh "docker push samargooda/node_project:latest"
+                  sh 'docker login -u=$NEXUS_REGISTRY_USER -p=$NEXUS_REGISTRY_PWD 192.168.99.115:30000'
+                //   sh 'docker tag node-app samargooda/node_project:latest'
+                  sh "docker push 192.168.99.115:30000/node_app"
         }
     }
   }
